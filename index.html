@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Light - Tuition Academy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <img src="images/logo.png" alt="The Light Logo" class="logo">
+        <h1>The Light</h1>
+        <p>Tuition Academy</p>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer">
+        <header>
+            <div class="header-content">
+                <img src="images/logo.png" alt="The Light Logo" class="header-logo">
+                <h1>The Light</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="dashboard" id="dashboard">
+                <h2>Management Dashboard</h2>
+                <div class="button-grid">
+                    <button class="action-btn" onclick="showSection('addStudent')">
+                        <i class="fas fa-user-plus"></i> Add Student
+                    </button>
+                    <button class="action-btn" onclick="showSection('addFee')">
+                        <i class="fas fa-money-bill-wave"></i> Add Fee
+                    </button>
+                    <button class="action-btn" onclick="showSection('feeRecord')">
+                        <i class="fas fa-receipt"></i> Fee Record
+                    </button>
+                    <button class="action-btn" onclick="showSection('monthlyIncome')">
+                        <i class="fas fa-chart-line"></i> Monthly Income
+                    </button>
+                    <button class="action-btn" onclick="showSection('allStudents')">
+                        <i class="fas fa-users"></i> All Students
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Student Section -->
+            <div class="section" id="addStudent">
+                <div class="section-header">
+                    <button class="back-btn" onclick="showDashboard()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2>Add A Student</h2>
+                </div>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="studentName">Student Name:</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentClass">Class/Grade:</label>
+                        <select id="studentClass" required>
+                            <option value="" disabled selected>Select Class/Grade</option>
+                            <option value="Playgroup">Playgroup</option>
+                            <option value="Nursery">Nursery</option>
+                            <option value="KG">KG</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 10">Class 10</option>
+                            <option value="O-Level">O-Level</option>
+                            <option value="A-Level">A-Level</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentPhone">Phone Number:</label>
+                        <input type="tel" id="studentPhone" placeholder="0300-1234567">
+                    </div>
+                    <button type="submit" class="submit-btn">Add Student</button>
+                </form>
+            </div>
+
+            <!-- Add Fee Section -->
+            <div class="section" id="addFee">
+                <div class="section-header">
+                    <button class="back-btn" onclick="showDashboard()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2>Add Fee</h2>
+                </div>
+                <form id="feeForm">
+                    <div class="form-group">
+                        <label for="feeStudent">Select Student:</label>
+                        <select id="feeStudent" required>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeAmount">Amount (PKR):</label>
+                        <input type="number" id="feeAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeMonth">Month:</label>
+                        <select id="feeMonth" required>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeYear">Year:</label>
+                        <input type="number" id="feeYear" min="2000" max="2100" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Record Fee</button>
+                </form>
+            </div>
+
+            <!-- Fee Record Section -->
+            <div class="section" id="feeRecord">
+                <div class="section-header">
+                    <button class="back-btn" onclick="showDashboard()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2>Fee Record</h2>
+                </div>
+                <div class="filter-options">
+                    <select id="feeRecordFilter" class="filter-select">
+                        <option value="all">All Records</option>
+                        <option value="monthly">This Month</option>
+                        <option value="yearly">This Year</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table id="feeTable">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Amount</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Monthly Income Section -->
+            <div class="section" id="monthlyIncome">
+                <div class="section-header">
+                    <button class="back-btn" onclick="showDashboard()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2>Monthly Income</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="incomeChart"></canvas>
+                </div>
+                <div class="summary">
+                    <div class="summary-card">
+                        <h3>This Month</h3>
+                        <p id="thisMonthIncome">PKR 0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>This Year</h3>
+                        <p id="thisYearIncome">PKR 0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total</h3>
+                        <p id="totalIncome">PKR 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Students Section -->
+            <div class="section" id="allStudents">
+                <div class="section-header">
+                    <button class="back-btn" onclick="showDashboard()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2>All Students</h2>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="studentSearch" placeholder="Search students..." class="search-input">
+                </div>
+                <div class="table-container">
+                    <table id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Class</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> The Light Tuition Academy</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
